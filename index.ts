@@ -2,11 +2,10 @@ import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import { createProxyMiddleware } from "http-proxy-middleware";
 
-const PORT: number = parseInt(process.env.PORT as string, 10);
-const HOST: string = process.env.HOST as string;
-const CAT_API_URL: string = process.env.CAT_API_URL as string;
-const CAT_API_KEY: string = process.env.CAT_API_KEY as string;
-const CLIENT_BASE_URL: string = process.env.APP_BASE_URL as string;
+const PORT = process.env.PORT;
+const CAT_API_URL = process.env.CAT_API_URL;
+const CAT_API_KEY = process.env.CAT_API_KEY!;
+const CLIENT_BASE_URL = process.env.APP_BASE_URL;
 
 const app = express();
 
@@ -30,6 +29,6 @@ app.use(cors({
   optionsSuccessStatus: 200,
 }));
 
-app.listen(PORT, HOST, () => {
-  console.log(`Starting Proxy at ${HOST}:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Starting Proxy at ${PORT}`);
 });
